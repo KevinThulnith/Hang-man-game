@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="logo2.png" type="image/x-icon" />
+    <title>Pro page</title>
+    <link rel="stylesheet" href="HangMan.css" type="text/css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav></nav>
+      <div id="wndw1">
+        <h2>Select Mode:</h2>
+        <button id="1">Easy</button>
+        <button id="2">Medium</button>
+        <button id="3">Hard</button>
+      </div>
+      <div id="wndw2">
+        <header>Guess the Word</header>
+        <div class="man"></div>
+        <div class="word"></div>
+        <div class="keybord"></div>
+        <div class="banner">
+          Lives left :
+          <span>7</span>
+        </div>
+        <div class="dot"></div>
+      </div>
+      <div id="wndw3" class="hide">
+        <header class="hide">Winner !</header>
+        <header class="hide">You Lose !</header>
+        <button id="menu">Menu</button>
+        <button id="restart">Restrart</button>
+      </div>
+    </div>
+    <script type="module" src="view.js"></script>
+    <script type="module" src="game.js"></script>
+  </body>
+</html>
