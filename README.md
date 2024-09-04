@@ -21,12 +21,12 @@ Requirements:
 
 Menu:
 
-<img src="images/photo1.png">
+<img src="images/photo1.png" height="600">
 
 Gamw:
 
-<img src="images/photo2.png">
+<img src="images/photo2.png" height="600">
 
 Result:
 
-<img src="images/photo3.png">
+<img src="images/photo3.png" height="600">
