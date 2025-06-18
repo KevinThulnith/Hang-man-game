@@ -4,17 +4,20 @@ let livesboard = document.querySelector(".banner").querySelector("span");
 let cont = document.querySelector(".container");
 let panel = document.querySelector(".word");
 let last = document.getElementById("wndw3");
+let menuButton = document.getElementById("menu"); // Cache menu button
+let restartButton = document.getElementById("restart"); // Cache restart button
 let banners = last.querySelectorAll("header");
 let glives = parts[2].length;
 let gamewrd = "";
 let letters = [];
 let used = [];
 let mode = 0;
+let correctGuesses = 0;
 
 //select mode and get random game word
 mdbtts.forEach((btt) => {
   btt.addEventListener("click", () => {
-    mode = eval(btt.id);
+    mode = parseInt(btt.id, 10);
     gamewrd = rndword(mode);
     cont.scrollTop = 690;
     displaywrd();
@@ -26,6 +29,7 @@ function displaywrd() {
   console.log(gamewrd);
   panel.innerHTML = "";
   letters = [];
+  correctGuesses = 0; // Initialize correctGuesses
   for (let ind = 0; ind < gamewrd.length; ind++) {
     const element = gamewrd[ind];
     let div = document.createElement("div");
@@ -57,13 +61,16 @@ function chechADD(ltt, m) {
   if (gamewrd.search(ltt) > -1) {
     for (let c = 0; c < letters.length; c++) {
       let ele = letters[c];
-      if (ele.id == ltt) {
+      // Check if the letter matches and is still hidden
+      if (ele.id == ltt && ele.classList.contains("invici")) {
         ele.classList.remove("invici");
-        letters.splice(c, 1);
-        if (letters.length == 0) {
-          winLoose(1);
-        }
+        correctGuesses++;
+        // No longer need to splice the array: letters.splice(c, 1);
       }
+    }
+    // Check for win condition
+    if (correctGuesses === gamewrd.length) {
+      winLoose(1);
     }
   } else if (!used.includes(ltt)) {
     used.push(ltt);
@@ -103,13 +110,13 @@ function winLoose(n) {
   }
 }
 
-document.getElementById("menu").addEventListener("click", () => {
+menuButton.addEventListener("click", () => {
   restrart();
   cont.scrollTop = 0;
   mode = 0;
 });
 
-document.getElementById("restart").addEventListener("click", () => {
+restartButton.addEventListener("click", () => {
   restrart();
 });
 
@@ -134,6 +141,7 @@ function restrart() {
   used = [];
   glives = parts[2].length;
   livesboard.innerHTML = glives;
+  correctGuesses = 0; // Reset correctGuesses
 }
 
 document.querySelector(".dot").addEventListener("click", () => {

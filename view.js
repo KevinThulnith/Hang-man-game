@@ -21,13 +21,15 @@ let parts = [
 ];
 
 //create navigation bar
+const navHTMLArray = [];
 for (let lett = 0; lett < word.length; lett++) {
   let y = word[lett];
-  let z = "<span>" + y + "</span>";
-  nav.innerHTML += z;
+  navHTMLArray.push("<span>" + y + "</span>");
 }
+nav.innerHTML = navHTMLArray.join('');
 
 //craete hangman picture
+const fragment = document.createDocumentFragment();
 for (let n = 0; n < parts[0].length; n++) {
   let part = parts[0][n];
   let div = document.createElement("div");
@@ -36,14 +38,16 @@ for (let n = 0; n < parts[0].length; n++) {
     div.classList.add("invicible");
     parts[2].push(div);
   }
-  man.appendChild(div);
+  fragment.appendChild(div);
 }
+man.appendChild(fragment);
 
 //create key board
+const boardHTMLArray = [];
 for (let m = 0; m < letters.length; m++) {
   let ltt = letters[m];
-  let p = '<button id = "' + ltt.toLowerCase() + '">' + ltt + "</button>";
-  board.innerHTML += p;
+  boardHTMLArray.push('<button id = "' + ltt.toLowerCase() + '">' + ltt + "</button>");
 }
+board.innerHTML = boardHTMLArray.join('');
 
 export { parts };

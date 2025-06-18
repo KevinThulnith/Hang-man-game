@@ -2652,18 +2652,24 @@ let words = [
 ];
 
 export function rndword(n) {
-  let limit = null;
+  let targetLength;
   if (n == 1) {
-    limit = 3;
+    targetLength = 4; // limit = 3, so length is limit + 1 = 4
   } else if (n == 2) {
-    limit = 5;
+    targetLength = 6; // limit = 5, so length is limit + 1 = 6
   } else {
-    limit = 7;
+    targetLength = 8; // limit = 7, so length is limit + 1 = 8
   }
-  while (true) {
-    let selected = words[Math.floor(Math.random() * words.length)];
-    if (selected.length > limit && selected.length < limit + 2) {
-      return selected;
-    }
+
+  const suitableWords = words.filter(word => word.length === targetLength);
+
+  if (suitableWords.length > 0) {
+    return suitableWords[Math.floor(Math.random() * suitableWords.length)];
+  } else {
+    // Fallback or error handling if no words of the target length are found.
+    // For now, returning a default word or one from the original list if this happens.
+    // This case should ideally not be reached if the words list is comprehensive.
+    console.warn(`No words of length ${targetLength} found. Returning a random word from the original list.`);
+    return words[Math.floor(Math.random() * words.length)];
   }
 }
